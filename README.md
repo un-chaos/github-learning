@@ -1,23 +1,21 @@
-当然。我们把刚才学过的内容整理成一份**适合直接放进 GitHub 项目的 README.md 的学习笔记**。
+当然。我们把刚才遇到的 **“Push 被拒绝 → Pull --rebase → 再 Push”** 加进教程里，而且把它放在最合适的位置。
 
-你可以直接把下面整段复制进去。内容我按照“我现在真正学会了什么”的方式写，而不是官方文档那种很难读的方式。
+你可以把下面这一版作为目前的最新版教程，直接替换项目里的 `README.md`。
 
 ````markdown
-# GitHub / Git 学习笔记
+# Git / GitHub 学习笔记
 
-这是我学习 Git、GitHub 和 Python 的第一个项目。
+这是我学习 Git、GitHub、Python 和后续 Vibe Coding 的第一个项目。
 
 ---
 
 # 一、Git、GitHub、Python 分别是什么？
 
-这是最重要的基础概念。
-
 ## Git
 
 Git 是一个**版本控制工具**。
 
-它负责记录代码的变化。
+它负责记录代码发生了什么变化。
 
 可以把 Git 理解成：
 
@@ -26,12 +24,16 @@ Git 是一个**版本控制工具**。
 例如：
 
 ```text
-第一次保存 → Version 1
-第二次保存 → Version 2
-第三次保存 → Version 3
+Version 1
+    ↓
+Version 2
+    ↓
+Version 3
 ````
 
-Git 本身不是用来运行 Python 代码的。
+每个版本都可以被记录、查看，必要时还可以回退。
+
+Git 本身不是用来运行 Python 程序的。
 
 ---
 
@@ -39,20 +41,17 @@ Git 本身不是用来运行 Python 代码的。
 
 GitHub 是一个基于 Git 的代码托管和协作平台。
 
-可以简单理解成：
-
-> Git 管理本地代码的版本，GitHub 把这个 Git 项目放到网上。
-
-所以：
+简单理解：
 
 ```text
 Git
 ↓
-管理本地版本
+管理本地代码的版本
 
 GitHub
 ↓
-保存、共享、协作
+把代码仓库放到网上
+并支持协作、审核、项目管理
 ```
 
 ---
@@ -67,20 +66,20 @@ Python 才是负责运行 Python 程序的。
 print("Hello, GitHub!")
 ```
 
-使用：
+运行：
 
 ```cmd
 python hello.py
 ```
 
-就可以运行程序。
+就会真正执行程序。
 
 所以：
 
 ```text
-Python → 运行代码
-Git    → 管理代码版本
-GitHub → 保存和协作代码
+Python  → 运行代码
+Git     → 管理代码版本
+GitHub  → 保存和协作代码
 ```
 
 ---
@@ -91,7 +90,7 @@ Repository，简称 Repo，中文叫“仓库”。
 
 可以把 Repository 理解成：
 
-> 一个专门存放某个项目的文件夹。
+> 一个专门存放某个项目的“大文件夹”。
 
 例如：
 
@@ -126,7 +125,9 @@ github-learning
 
 # 三、README.md
 
-README 是项目的说明书。
+README 可以理解成：
+
+> 项目的说明书。
 
 例如：
 
@@ -142,9 +143,9 @@ README 是项目的说明书。
 - Python
 ```
 
-GitHub 会自动把 README 显示在仓库主页上。
+GitHub 会把 README 自动显示在仓库主页。
 
-`.md` 表示这是 Markdown 文件。
+`.md` 表示 Markdown 文件。
 
 ---
 
@@ -162,7 +163,7 @@ Add hello.py
 Update hello.py
 ```
 
-每一个 Commit 都代表项目历史中的一个版本。
+每个 Commit 都代表项目历史中的一个版本。
 
 例如：
 
@@ -180,15 +181,15 @@ Version 3
 Update hello.py
 ```
 
-Commit 只是在本地 Git 中记录版本。
+Commit 默认只是保存在本地 Git 仓库中。
 
-Commit 完成后，不代表代码已经上传到 GitHub。
+完成 Commit 不代表代码已经上传到 GitHub。
 
 ---
 
-# 五、Git 的基本工作区域
+# 五、Git 的三个重要区域
 
-Git 可以简单理解成有三个重要区域：
+可以把 Git 简单理解成：
 
 ```text
 Working Tree
@@ -200,9 +201,9 @@ Local Repository
 GitHub
 ```
 
-## Working Tree
+## 1. Working Tree
 
-就是我电脑里正在工作的代码。
+就是电脑中当前正在工作的项目文件。
 
 例如：
 
@@ -210,11 +211,11 @@ GitHub
 D:\GitHub\github-learning
 ```
 
-我修改 `hello.py`，修改首先发生在 Working Tree。
+修改 `hello.py`，首先就是修改 Working Tree。
 
 ---
 
-## Staging Area
+## 2. Staging Area
 
 执行：
 
@@ -222,15 +223,15 @@ D:\GitHub\github-learning
 git add hello.py
 ```
 
-之后，这个修改会进入 Staging Area。
+之后，这个修改进入暂存区。
 
 可以理解成：
 
-> “我决定把这个修改放进下一次版本。”
+> “我准备把这个修改放进下一次版本。”
 
 ---
 
-## Local Repository
+## 3. Local Repository
 
 执行：
 
@@ -238,7 +239,7 @@ git add hello.py
 git commit -m "Update hello.py"
 ```
 
-之后，这个修改就正式成为本地 Git 历史中的一个版本。
+之后，这个修改正式成为本地 Git 历史中的一个版本。
 
 ---
 
@@ -254,7 +255,7 @@ git clone https://github.com/un-chaos/github-learning.git
 
 > 把 GitHub 上的仓库复制到电脑。
 
-例如：
+方向：
 
 ```text
 GitHub
@@ -262,7 +263,7 @@ GitHub
 电脑
 ```
 
-我把项目放在：
+我的项目保存在：
 
 ```text
 D:\GitHub\github-learning
@@ -278,7 +279,7 @@ git status
 
 作用：
 
-> 查看当前项目状态。
+> 查看当前 Git 项目状态。
 
 例如：
 
@@ -286,7 +287,7 @@ git status
 nothing to commit, working tree clean
 ```
 
-意思：
+表示：
 
 > 当前没有未提交的修改。
 
@@ -296,7 +297,7 @@ nothing to commit, working tree clean
 modified: hello.py
 ```
 
-说明：
+表示：
 
 > `hello.py` 被修改了。
 
@@ -330,17 +331,9 @@ git commit -m "Update hello.py"
 
 作用：
 
-> 创建一个新的版本。
+> 创建一个新的本地版本。
 
-`-m` 后面是 Commit message，也就是对这次修改的简短说明。
-
-例如：
-
-```text
-Update hello.py
-Add heatmap
-Fix calculation bug
-```
+`-m` 后面是 Commit message，也就是这次修改的简短说明。
 
 ---
 
@@ -362,9 +355,9 @@ git push
 GitHub
 ```
 
-可以记成：
+记忆方法：
 
-> push = 往 GitHub 推
+> push = 向 GitHub 推送
 
 ---
 
@@ -376,7 +369,7 @@ git pull
 
 作用：
 
-> 把 GitHub 上的新版本拉到本地。
+> 获取 GitHub 上的新变化，并同步到本地。
 
 方向：
 
@@ -386,7 +379,7 @@ GitHub
 本地
 ```
 
-可以记成：
+记忆方法：
 
 > pull = 从 GitHub 拉下来
 
@@ -408,7 +401,7 @@ git pull
 GitHub → 本地
 ```
 
-完整关系：
+最基本的关系：
 
 ```text
              GitHub
@@ -422,21 +415,11 @@ GitHub → 本地
              GitHub
 ```
 
-更准确地说：
-
-```text
-git push
-把本地提交上传到远程仓库
-
-git pull
-获取远程仓库更新，并同步到本地
-```
-
 ---
 
 # 八、Remote 和 origin
 
-克隆 GitHub 仓库以后，Git 会记录远程仓库。
+克隆仓库以后，Git 会记录一个远程仓库。
 
 默认远程仓库名字通常叫：
 
@@ -452,11 +435,119 @@ origin/main
 
 可以理解成：
 
-> GitHub 上那个仓库的 main 分支。
+> 远程仓库 origin 中的 main 分支。
 
 ---
 
-# 九、Branch（分支）
+# 九、Push 被拒绝怎么办？
+
+这是 Git 中非常常见的真实情况。
+
+有一次执行：
+
+```cmd
+git push
+```
+
+出现：
+
+```text
+[rejected] main -> main (fetch first)
+```
+
+并提示：
+
+```text
+remote contains work that you do not have locally
+```
+
+意思是：
+
+> GitHub 上已经有新的提交，而我的本地版本不知道这些更新。
+
+也就是说：
+
+```text
+GitHub main
+     ↓
+有新的 Commit
+
+本地 main
+     ↓
+还没有这些 Commit
+```
+
+为了避免直接覆盖远程代码，Git 拒绝 Push。
+
+---
+
+## 正确处理方法
+
+先把远程最新版本同步到本地：
+
+```cmd
+git pull --rebase origin main
+```
+
+可以简单理解成：
+
+```text
+GitHub 最新版本
+       ↓
+先同步到本地
+       ↓
+再把我自己的本地提交接到后面
+```
+
+`--rebase` 的目的之一，是让提交历史保持比较整洁。
+
+同步成功以后，再执行：
+
+```cmd
+git push
+```
+
+最终：
+
+```text
+本地
+  ↓
+git pull --rebase
+  ↓
+整合远程变化
+  ↓
+git push
+  ↓
+GitHub
+```
+
+---
+
+## 为什么不能直接强制 Push？
+
+不要在不了解后果的情况下使用：
+
+```cmd
+git push -f
+```
+
+因为强制 Push 可能覆盖远程历史。
+
+正常情况下：
+
+```text
+先 pull / rebase
+↓
+解决冲突（如果有）
+↓
+再 push
+```
+
+更加安全。
+
+---
+
+# 十、Branch（分支）
 
 Branch 是 Git 最重要的概念之一。
 
@@ -497,9 +588,13 @@ git branch
   test-feature
 ```
 
-`*` 表示：
+其中：
 
-> 当前所在的分支。
+```text
+*
+```
+
+表示当前所在分支。
 
 ---
 
@@ -533,7 +628,7 @@ git switch main
 
 ---
 
-# 十、为什么需要 Branch？
+# 十一、为什么需要 Branch？
 
 假设：
 
@@ -541,7 +636,7 @@ git switch main
 main
 ```
 
-目前代码稳定。
+当前代码稳定。
 
 我想尝试一个新算法。
 
@@ -552,12 +647,10 @@ main
  ↓
 修改
  ↓
-程序坏了
+程序可能坏掉
 ```
 
-可能影响稳定版本。
-
-所以可以：
+所以可以创建：
 
 ```text
 main
@@ -565,9 +658,9 @@ main
  └── test-feature
 ```
 
-然后在 `test-feature` 中进行实验。
+然后在 `test-feature` 中开发。
 
-如果实验失败：
+如果失败：
 
 ```text
 test-feature
@@ -577,7 +670,7 @@ test-feature
 
 main 不受影响。
 
-如果实验成功：
+如果成功：
 
 ```text
 test-feature
@@ -589,9 +682,9 @@ main
 
 ---
 
-# 十一、Pull Request（PR）
+# 十二、Pull Request（PR）
 
-Pull Request 和 `git pull` 不是一回事。
+Pull Request 和 `git pull` 完全不是一回事。
 
 ## git pull
 
@@ -617,11 +710,11 @@ main
 
 可以理解成：
 
-> “我在 test-feature 做完了一个功能，请把它合并进 main。”
+> “我在 test-feature 做完了功能，请把它合并进 main。”
 
 ---
 
-# 十二、Pull Request 中的 base 和 compare
+# 十三、Pull Request 中的 base 和 compare
 
 创建 Pull Request 时：
 
@@ -635,11 +728,11 @@ compare: test-feature
 ```text
 base
 ↓
-我要合并到哪里
+最终要合并到哪里
 
 compare
 ↓
-我要把哪个分支的修改拿过来
+哪个分支提供修改
 ```
 
 所以：
@@ -654,9 +747,9 @@ main
 
 ---
 
-# 十三、Diff（代码差异）
+# 十四、Diff：查看代码变化
 
-GitHub 会在 Pull Request 中显示代码发生了什么变化。
+GitHub 会显示代码的差异。
 
 通常：
 
@@ -666,7 +759,7 @@ GitHub 会在 Pull Request 中显示代码发生了什么变化。
 
 表示：
 
-> 删除的代码
+> 被删除的代码。
 
 而：
 
@@ -676,7 +769,7 @@ GitHub 会在 Pull Request 中显示代码发生了什么变化。
 
 表示：
 
-> 新增的代码
+> 新增的代码。
 
 例如：
 
@@ -686,15 +779,17 @@ GitHub 会在 Pull Request 中显示代码发生了什么变化。
 + print("This is my new feature!")
 ```
 
-就代表新版本增加了一行。
+就表示：
+
+> 新版本相对于旧版本发生了这些变化。
 
 ---
 
-# 十四、Merge
+# 十五、Merge
 
 Merge 就是：
 
-> 把一个分支的修改合并到另一个分支。
+> 把一个分支的修改正式合并到另一个分支。
 
 例如：
 
@@ -706,52 +801,52 @@ test-feature
 main
 ```
 
-Pull Request 创建之后：
+典型的 Pull Request 流程：
 
 ```text
-Create Pull Request
-        ↓
+开发
+ ↓
+Commit
+ ↓
+Push
+ ↓
+Pull Request
+ ↓
 Review
-        ↓
-Merge Pull Request
+ ↓
+Merge
+ ↓
+main
 ```
-
-Merge 以后，`test-feature` 中的修改就进入 `main`。
 
 ---
 
-# 十五、完整 Git 工作流
+# 十六、完整 Git 工作流
 
-目前学到的最重要的一套流程：
+普通开发：
 
 ```text
-创建 GitHub 仓库
-        ↓
-git clone
-        ↓
-在本地修改代码
-        ↓
+修改代码
+   ↓
 git status
-        ↓
+   ↓
 git add
-        ↓
+   ↓
 git commit
-        ↓
+   ↓
 git push
-        ↓
+   ↓
 GitHub
 ```
 
-如果要开发新功能：
+多人协作 / 新功能开发：
 
 ```text
 main
  ↓
 创建 branch
  ↓
-git switch
- ↓
-修改代码
+开发
  ↓
 git add
  ↓
@@ -770,7 +865,7 @@ main
 
 ---
 
-# 十六、我目前已经亲手操作过的命令
+# 十七、目前已经实际操作过的命令
 
 ```cmd
 git --version
@@ -787,12 +882,14 @@ git push
 
 git pull
 
+git pull --rebase
+
 git branch
 
 git switch
 ```
 
-以及：
+Python：
 
 ```cmd
 python --version
@@ -802,9 +899,7 @@ python hello.py
 
 ---
 
-# 十七、目前最重要的记忆
-
-如果只记住几句话：
+# 十八、最重要的记忆
 
 ```text
 Git = 管理版本
@@ -825,14 +920,14 @@ Pull = GitHub → 本地
 
 Pull Request = 请求把一个分支合并到另一个分支
 
-Merge = 真正把分支合并
+Merge = 正式合并分支
+
+git pull --rebase = 当远程有本地没有的提交时，先同步远程变化，再把本地提交重新接到后面
 ```
 
 ---
 
-# 十八、我现在对 Git 的整体理解
-
-可以把整个系统理解成：
+# 十九、目前我对 Git 的整体理解
 
 ```text
                  GitHub
@@ -865,56 +960,74 @@ Merge = 真正把分支合并
              修改代码
 ```
 
-这就是目前我对 Git 和 GitHub 的整体理解。
-
----
-
-# 下一步学习计划
-
-接下来可以继续学习：
-
-1. GitHub Issues
-2. Fork
-3. Tags / Releases
-4. GitHub Actions
-5. `.gitignore`
-6. SSH
-7. GitHub Projects
-8. GitHub Copilot / Agent
-9. Vibe Coding + GitHub
-10. 用 GitHub 管理真正的 Python / 数学建模项目
-
-````
-
-## 怎么把它放进你的项目？
-
-你现在已经有：
+目前最重要的是理解：
 
 ```text
-D:\GitHub\github-learning
-````
-
-里面有：
-
-```text
-README.md
-hello.py
+修改
+ ↓
+git add
+ ↓
+git commit
+ ↓
+git push
+ ↓
+GitHub
 ```
 
-最简单的方法就是直接修改 `README.md`。
+以及当远程发生变化时：
 
-在 GitHub 网页上点：
-
-**README.md → 铅笔 ✏️ → 把原来的内容替换成上面的笔记 → Commit changes**
-
-不过我更推荐你**在电脑本地修改 README.md**，然后再走一遍：
-
-```cmd
-git add README.md
-git commit -m "Add Git and GitHub learning notes"
+```text
+GitHub 有新提交
+ ↓
+git pull --rebase
+ ↓
+整合远程变化
+ ↓
 git push
 ```
 
-这样你又能练习一次完整的 Git 工作流。
+---
 
-你现在已经把这条链路跑通了，所以这次可以自己试着完成，不需要我一步一步指挥了。
+# 二十、下一步学习方向
+
+后续可以继续学习：
+
+* GitHub Issues
+* Fork
+* Tags / Releases
+* `.gitignore`
+* SSH
+* GitHub Actions
+* GitHub Projects
+* GitHub Copilot / Agent
+* Vibe Coding + GitHub
+* 用 GitHub 管理 Python 项目
+* 用 GitHub 管理数学建模项目
+
+````
+
+### 你现在最好这样保存
+
+既然你已经把这个项目作为 Git 学习项目，就可以把这份内容保存到本地的：
+
+```text
+D:\GitHub\github-learning\README.md
+````
+
+然后走一遍我们刚刚已经学会的流程：
+
+```cmd
+git status
+git add README.md
+git commit -m "Update Git learning notes"
+git push
+```
+
+这次你遇到远程有更新时，也已经知道：
+
+```cmd
+git pull --rebase origin main
+git push
+```
+
+这样你的 `github-learning` 仓库本身就会逐渐变成一份**你自己的 Git/GitHub 教程和操作日志**。
